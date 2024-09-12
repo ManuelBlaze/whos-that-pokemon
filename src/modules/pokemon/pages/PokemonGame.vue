@@ -8,7 +8,16 @@
   </section>
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
-    <h1 class="text-3xl m-5 animate-pulse">Who's that Pokémon?!</h1>
+    <h1 class="text-5xl m-10 animate-pulse">Who's that Pokémon?!</h1>
+    <div class="h-20">
+      <button
+        v-if="gameStatus !== GameStatus.Playing"
+        class="shadow-md rounded-md p-3 cursor-pointer w-35 text-center transition-all capitalize bg-red-500 text-white hover:bg-red-600"
+        @click="getRound(4)"
+      >
+        Play Again!
+      </button>
+    </div>
 
     <!-- Pokémon Picture -->
     <PokemonPicture
@@ -31,5 +40,6 @@ import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 import { GameStatus } from '../interfaces';
 
-const { gameStatus, pokemonOptions, randomPokemon, isLoading, checkAnswer } = usePokemonGame();
+const { checkAnswer, gameStatus, getRound, isLoading, pokemonOptions, randomPokemon } =
+  usePokemonGame();
 </script>

@@ -1,16 +1,16 @@
 <template>
-  <section v-if="false" class="flex flex-col justify-center items-center w-screen h-screen">
-    <h1 class="text-3xl">Espere por favor</h1>
-    <h3 class="animate-pulse">Cargando Pokémon</h3>
+  <section v-if="isLoading" class="flex flex-col justify-center items-center w-screen h-screen">
+    <h1 class="text-3xl">Please wait</h1>
+    <h3 class="animate-pulse">Loading Pokémon...</h3>
   </section>
 
-  <section class="flex flex-col justify-center items-center w-screen h-screen">
-    <h1 class="m-5">Who's that Pokémon?!</h1>
+  <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
+    <h1 class="text-3xl m-5 animate-pulse">Who's that Pokémon?!</h1>
 
     <!-- Pokémon Picture -->
     <PokemonPicture />
     <!-- Pokémon Options -->
-    <PokemonOptions />
+    <PokemonOptions :options="pokemonOptions" />
   </section>
 </template>
 
@@ -19,5 +19,5 @@ import PokemonOptions from '../components/PokemonOptions.vue';
 import PokemonPicture from '../components/PokemonPicture.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 
-const { gameStatus } = usePokemonGame();
+const { gameStatus, getOptions, pokemonOptions, isLoading } = usePokemonGame();
 </script>
